@@ -25,13 +25,18 @@
       </button>
     </div>
     <div class="hidden lg:flex lg:gap-x-12">
-      <a href="{{ route('main') }}" class="text-sm font-semibold leading-6 text-gray-300">Main page</a> <!-- Texto gris claro para los enlaces -->
-      <a @if (!Auth::check()) href="{{ route('login') }}" @endif class="text-sm font-semibold leading-6 text-gray-300">Upload experience</a>
-      <a @if (!Auth::check()) href="{{ route('login') }}" @endif class="text-sm font-semibold leading-6 text-gray-300">Profile</a>
+      <a href="{{ route('main') }}" class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Main page</a> <!-- Texto gris claro para los enlaces -->
+      <a @if (!Auth::check()) href="{{ route('showLogin') }}" @else href="{{ route('showUpload') }}" @endif class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Upload experience</a>
+      <a @if (!Auth::check()) href="{{ route('showLogin') }}" @else href="{{ route('showProfile') }}" @endif class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Profile</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="{{ route('login') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log in</button></a>
-      <a href="{{ route('signup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button></a>
+      @if (!Auth::check())
+        <a href="{{ route('showLogin') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log in</button></a>
+        <a href="{{ route('showSignup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button></a>
+      @else
+        <a href="{{ route('showProfile') }}" class="text-3xl font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">{{ Auth::user()->name }}</a>
+        <a href="{{ route('logout') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log out</button></a>
+      @endif
     </div>
   </nav>
   <!-- Mobile menu, show/hide based on menu open state. -->
@@ -55,12 +60,17 @@
         <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
             <a href="{{ route('main') }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Main page</a> <!-- Texto gris claro para enlaces -->
-            <a @if (!Auth::check()) href="{{ route('login') }}" @endif class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Upload experience</a>
-            <a @if (!Auth::check()) href="{{ route('login') }}" @endif class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Profile</a>
+            <a @if (!Auth::check()) href="{{ route('showLogin') }}" @endif class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Upload experience</a>
+            <a @if (!Auth::check()) href="{{ route('showLogin') }}" @endif class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Profile</a>
           </div>
           <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="{{ route('login') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log in</button></a>
-            <a href="{{ route('signup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button></a>
+            @if (!Auth::check())
+              <a href="{{ route('showLogin') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log in</button></a>
+              <a href="{{ route('showSignup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button></a>
+            @else
+              <a href="{{ route('showProfile') }}" class="text-3xl font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">{{ Auth::user()->name }}</a>
+              <a href="{{ route('logout') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log out</button></a>
+            @endif
           </div>
         </div>
       </div>
@@ -72,7 +82,7 @@
 
 </body>
 
-<footer class="alm bg-gray-900 text-white py-8">
+<footer class="alm bg-gray-800 text-white py-8">
     <div class="container mx-auto flex justify-between items-center">
         <div class="flex space-x-4">
             <a href="https://github.com/AlejGom" class="flex items-center space-x-2">

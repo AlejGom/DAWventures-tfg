@@ -15,4 +15,12 @@ class RoutesController extends Controller
     public function showSignupForm() {
         return view('signup');
     }
+    public function showUploadForm() {
+        return view('upload');
+    }
+    public function showProfile() {
+        return view('profile');
+    }
+
+
 }
