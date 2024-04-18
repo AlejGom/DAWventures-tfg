@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoutesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ExperiencesController;
 
 Route::get('/', function () {
     return view('main');
@@ -19,5 +20,6 @@ Route::post('/signup', [UsersController::class, 'signup'])->name('signup');
 Route::get('/logout', [UsersController::class, 'logout'])->name('logout');
 
 Route::get('/upload', [RoutesController::class, 'showUploadForm'])->name('showUpload');
+Route::post('/upload', [ExperiencesController::class, 'upload'])->name('upload');
 
 Route::get('/profile', [RoutesController::class, 'showProfile'])->name('showProfile');

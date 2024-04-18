@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class RoutesController extends Controller
@@ -16,7 +16,10 @@ class RoutesController extends Controller
         return view('signup');
     }
     public function showUploadForm() {
-        return view('upload');
+        $countries = Country::all();
+        return view('upload', [
+            'countries' => $countries
+        ]);
     }
     public function showProfile() {
         return view('profile');
