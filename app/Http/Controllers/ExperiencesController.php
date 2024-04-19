@@ -19,6 +19,7 @@ class ExperiencesController extends Controller
 
         $country = Country::find($request->country);
 
+        /* dd($request->title, $request->description, $country->name, Auth::user()->id); */
         Experience::create([
             'title'       => $request->title, 
             'description' => $request->description,

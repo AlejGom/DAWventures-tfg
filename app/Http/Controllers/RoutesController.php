@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Experience;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ExperiencesController;
@@ -10,11 +11,7 @@ use App\Http\Controllers\ExperiencesController;
 class RoutesController extends Controller
 {
     public function showMainForm() {
-        $experiences = Experience::all();
-
-        
-
-
+        $experiences = $this->loadExperiences(1);
 
         return view('main', [
             'experiences' => $experiences
@@ -33,8 +30,22 @@ class RoutesController extends Controller
         ]);
     }
     public function showProfile() {
-        return view('profile');
+        $experiences = $this->loadExperiences(2);
+        /* dd($experiences); */
+        return view('profile', [
+            'experiences' => $experiences
+        ]);
     }
 
+    public function loadExperiences($number) {
+        if ($number == 1) {
+            $experiences = Experience::orderBy('created_at', 'desc')->get();
+        }
+        if ($number == 2) {
+            $experiences = Experience::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        }
+
+        return $experiences;
+    }
 
 }

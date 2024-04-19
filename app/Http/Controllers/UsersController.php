@@ -26,7 +26,13 @@ class UsersController extends Controller
             'profile_image' => $defaultImage,
         ]);
 
-        return redirect('/login');
+        $credentials = $request->only('name', 'password');
+
+        if(auth()->attempt($credentials)) {
+            return redirect('/main');
+        }
+
+        /* return redirect('/login'); */
     }
 
     public function login(Request $request) {
@@ -58,4 +64,43 @@ class UsersController extends Controller
         Auth::logout();
         return redirect('/main');
     }
+
+    public function updateProfile(Request $request) {
+        $user = User::find(Auth::user()->id);
+    
+        $rules = [
+            'name'  => 'min:4|max:20|unique:users,name,'.$user->id,
+            'email' => 'email|unique:users,email,'.$user->id,
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ];
+    
+        if ($request->has('name') && $request->name !== $user->name) {
+            $rules['name'] .= '|required';
+        }
+        if ($request->has('email') && $request->email !== $user->email) {
+            $rules['email'] .= '|required';
+        }
+    
+        $request->validate($rules);
+    
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('profile_images', 'public');
+    
+            $user->profile_image = '../storage/app/public/'.$imagePath;
+        }
+    
+        if ($request->has('name') && $request->name !== $user->name) {
+            $user->name = $request->name;
+        }
+        if ($request->has('email') && $request->email !== $user->email) {
+            $user->email = $request->email;
+        }
+    
+        $user->save();
+    
+        return redirect('/profile');
+    }
+    
+    
+    
 }
