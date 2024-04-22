@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="mt-10 mb-10 max-w-lg mx-auto">
-  <form action="{{ route('upload') }}" method="POST">
+  <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="space-y-6">
       <div>
@@ -36,11 +36,31 @@
       </div>
     </div>
 
+    <div>
+        <label for="images" class="block">Subir imágenes (hasta 4):</label>
+        <input type="file" name="images[]" id="images" accept="image/*" multiple>
+    </div>
+    <div id="imageNames"></div>
+
     <div class="mt-6 flex justify-end space-x-4 mb-8">
       <button type="button" class="inline-block px-4 py-2 text-sm font-semibold text-gray-900 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</button>
       <button type="submit" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
     </div>
   </form>
 </div>
+
+<script>
+    document.getElementById('images').addEventListener('change', function(e) {
+        const files = e.target.files;
+        const imageNamesContainer = document.getElementById('imageNames');
+        imageNamesContainer.innerHTML = '';
+
+        for (let i = 0; i < files.length; i++) {
+            const imageName = document.createElement('p');
+            imageName.textContent = files[i].name;
+            imageNamesContainer.appendChild(imageName);
+        }
+    });
+</script>
 
 @endsection

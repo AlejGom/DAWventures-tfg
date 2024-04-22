@@ -28,3 +28,5 @@ Route::post('/upload', [ExperiencesController::class, 'upload'])->name('upload')
 
 Route::get('/profile', [RoutesController::class, 'showProfile'])->name('showProfile')->middleware('auth');
 Route::post('/profile', [UsersController::class, 'updateProfile'])->name('updateProfile')->middleware('auth');
+
+Route::get('/experience/{id}', [RoutesController::class, 'showExperience'])->name('showExperience');

@@ -9,7 +9,7 @@ class Experience extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['country', 'title', 'description', 'likes', 'user_id'];
+    protected $fillable = ['id', 'country', 'title', 'description', 'likes', 'user_id'];
 
     public function images()
     {

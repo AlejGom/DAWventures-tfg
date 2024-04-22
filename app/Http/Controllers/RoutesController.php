@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Experience;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ExperienceImage;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ExperiencesController;
@@ -48,4 +49,14 @@ class RoutesController extends Controller
         return $experiences;
     }
 
+    public function showExperience($id) {
+
+        $experience = Experience::find($id);
+        $images     = ExperienceImage::where('experience_id', $experience->id)->get();
+
+        return view('experiences', [
+            'experience' => $experience,
+            'images'     => $images
+        ]);
+    }
 }
