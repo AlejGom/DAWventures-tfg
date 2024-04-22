@@ -16,7 +16,7 @@
       <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Change profile image</label>
       <div class="mt-2">
         <label for="image" class="image-input">
-          <img src="{{ Auth::user()->profile_image }}" alt="Preview" class="image-preview" value="{{ Auth::user()->profile_image }}">
+          <img src="{{ Auth::user()->profile_image }}" class="image-preview" value="{{ Auth::user()->profile_image }}">
           <input id="image" name="image" type="file">
         </label>
       </div>

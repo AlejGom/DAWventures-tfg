@@ -17,7 +17,7 @@ class UsersController extends Controller
             'password_confirmation' => 'required|same:password',
         ]);
         
-        $defaultImage = public_path('storage/profile_images/default.png');
+        $defaultImage = public_path('storage/app/public/profile_images/default.png');
 
         User::create([
             'name'          => $request->name,
