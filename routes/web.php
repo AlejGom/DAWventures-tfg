@@ -7,7 +7,7 @@ use App\Http\Controllers\ExperiencesController;
 use App\Models\Experience;
 
 Route::get('/', function () {
-    $experiences = Experience::all();
+    $experiences = Experience::orderBy('created_at', 'desc')->get();
     return view('main', [
         'experiences' => $experiences
     ]);
@@ -30,3 +30,5 @@ Route::get('/profile', [RoutesController::class, 'showProfile'])->name('showProf
 Route::post('/profile', [UsersController::class, 'updateProfile'])->name('updateProfile')->middleware('auth');
 
 Route::get('/experience/{id}', [RoutesController::class, 'showExperience'])->name('showExperience');
+
+Route::get('/deleteExperience/{id}', [ExperiencesController::class, 'deleteExperience'])->name('deleteExperience')->middleware('auth');

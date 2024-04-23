@@ -48,6 +48,16 @@ class ExperiencesController extends Controller
     
         return redirect('/main');
     }
+
+    public function deleteExperience($id) {
+        $experience = Experience::find($id);
+
+        if ($experience->user_id == Auth::user()->id) {
+            $experience->delete();
+        }
+
+        return redirect('/profile');
+    }
     
     
     
