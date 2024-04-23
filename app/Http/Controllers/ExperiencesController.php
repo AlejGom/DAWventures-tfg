@@ -14,7 +14,8 @@ class ExperiencesController extends Controller
             'title'       => 'required',
             'description' => 'required',
             'country'     => 'required',
-            'images.*'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'images.*'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images'       => 'max:4',
         ]);
     
         $country = Country::find($request->country);
