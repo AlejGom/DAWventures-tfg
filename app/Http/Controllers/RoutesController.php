@@ -56,7 +56,18 @@ class RoutesController extends Controller
 
         return view('experiences', [
             'experience' => $experience,
-            'images'     => $images
+            'images'     => $images,
+        ]);
+    }
+
+    public function showEditForm($id) {
+
+        $experience = Experience::find($id);
+        $countries  = Country::all();
+
+        return view('edit', [
+            'experience' => $experience,
+            'countries'  => $countries,
         ]);
     }
 }

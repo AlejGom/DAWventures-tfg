@@ -54,6 +54,7 @@
       <article class="flex max-w-xl flex-col items-start justify-between">
         <div class="flex items-center gap-x-4 text-xs">
           <a href="{{ route('deleteExperience', $experience->id) }}"><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/borrar.png') }}"></a>
+          <a href="{{ route('showEditForm', $experience->id) }}"><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/boligrafo.png') }}"></a>
           <time datetime="{{ $experience->created_at }}" class="text-gray-500">{{ $experience->created_at }}</time>
           <a href="{{ route('showExperience', $experience->id) }}" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{ $experience->country }}</a>
         </div>
@@ -83,5 +84,7 @@
     </div>
   </div>
 </div>
+
+<!-- TODO añadir confirmacion para borrar -->
 
 @endsection

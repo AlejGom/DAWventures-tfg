@@ -12,13 +12,13 @@
       </div>
 
       <div>
-        <input placeholder="Title" type="text" name="title" id="title" autocomplete="title" class="mt-1 block w-full border border-gray-300 @error('title') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ old('title') }}">
+        <input value="{{ $experience->title }}" placeholder="Title" type="text" name="title" id="title" autocomplete="title" class="mt-1 block w-full border border-gray-300 @error('title') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ old('title') }}">
         @error('title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
       </div>
 
       <div class="relative">
         <select name="country" class="block appearance-none w-full bg-white border border-gray-300 @error('country') border-red-500 @enderror hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-          <option value="" disabled selected>Country</option>
+          <option value="{{ $experience->id }}" disabled selected>{{ $experience->country }}</option>
             @foreach ($countries as $country)
                 <option value="{{ $country->id }}">{{ $country->name }}</option>
             @endforeach
@@ -34,7 +34,7 @@
 
       <div>
         <label for="description" class="block text-sm font-medium text-gray-900">Description</label>
-        <textarea id="description" name="description" rows="15" class="mt-1 block w-full h-500 border border-gray-300 @error('description') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">{{ old('description') }}</textarea>
+        <textarea id="description" name="description" rows="15" class="mt-1 block w-full h-500 border border-gray-300 @error('description') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">{{ $experience->description }}{{ old('description') }}</textarea>
         @error('description') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
       </div>
     </div>

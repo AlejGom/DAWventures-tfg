@@ -32,3 +32,5 @@ Route::post('/profile', [UsersController::class, 'updateProfile'])->name('update
 Route::get('/experience/{id}', [RoutesController::class, 'showExperience'])->name('showExperience');
 
 Route::get('/deleteExperience/{id}', [ExperiencesController::class, 'deleteExperience'])->name('deleteExperience')->middleware('auth');
+
+Route::get('/editExperience/{id}', [RoutesController::class, 'showEditForm'])->name('showEditForm')->middleware('auth');
