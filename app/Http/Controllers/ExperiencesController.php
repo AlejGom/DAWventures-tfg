@@ -15,9 +15,13 @@ class ExperiencesController extends Controller
             'description' => 'required',
             'country'     => 'required',
             'images.*'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'images'       => 'max:4',
+            'images'      => 'max:4',
         ]);
     
+        if ($request->hasFile('images') && count($request->file('images')) > 4) {
+            return redirect()->back()->withErrors(['images' => 'The maximum number of images is 4.'])->withInput();
+        }
+
         $country = Country::find($request->country);
     
         $experience = Experience::create([
@@ -28,10 +32,9 @@ class ExperiencesController extends Controller
         ]);
     
         if ($request->hasFile('images')) {
-            $request->validate([
+            /* $request->validate([
                 'images.*'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-            ]);
-    
+            ]); */
             $images = $request->file('images');
     
             foreach ($images as $image) {

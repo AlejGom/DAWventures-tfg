@@ -18,9 +18,9 @@
 
       <div class="relative">
         <select name="country" class="block appearance-none w-full bg-white border border-gray-300 @error('country') border-red-500 @enderror hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-          <option value="" disabled selected>Country</option>
+          <option value="" disabled {{ old('country') === null ? 'selected' : '' }}>Country</option>
             @foreach ($countries as $country)
-                <option value="{{ $country->id }}">{{ $country->name }}</option>
+              <option value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
             @endforeach
         </select>
         @error('country') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -44,6 +44,7 @@
         <input type="file" name="images[]" id="images" accept="image/*" multiple>
     </div>
     <div id="imageNames"></div>
+    @error('images') <p class="text-red-500 text-xs mt-1">The maximum number of images is 4'</p> @enderror
 
     <div class="mt-6 flex justify-end space-x-4 mb-8">
       <button type="submit" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Upload</button>
