@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="mt-10 mb-10 max-w-lg mx-auto">
-  <form action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
+  <form action="{{ route('update' , $experience->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="space-y-6">
       <div>
@@ -18,7 +18,7 @@
 
       <div class="relative">
         <select name="country" class="block appearance-none w-full bg-white border border-gray-300 @error('country') border-red-500 @enderror hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-          <option value="{{ $experience->id }}" disabled selected>{{ $experience->country }}</option>
+          <option value="{{ $countryId }}" selected>{{ $experience->country }}</option>
             @foreach ($countries as $country)
                 <option value="{{ $country->id }}">{{ $country->name }}</option>
             @endforeach
@@ -46,7 +46,7 @@
     <div id="imageNames"></div>
 
     <div class="mt-6 flex justify-end space-x-4 mb-8">
-      <button type="button" class="inline-block px-4 py-2 text-sm font-semibold text-gray-900 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</button>
+      <a href="{{ route('showProfile') }}" class="inline-block px-4 py-2 text-sm font-semibold text-gray-900 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Cancel</a>
       <button type="submit" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
     </div>
   </form>

@@ -64,10 +64,12 @@ class RoutesController extends Controller
 
         $experience = Experience::find($id);
         $countries  = Country::all();
+        $countryId  = Country::where('name', $experience->country)->first()->id;
 
         return view('edit', [
             'experience' => $experience,
             'countries'  => $countries,
+            'countryId'  => $countryId,
         ]);
     }
 }

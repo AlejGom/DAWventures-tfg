@@ -60,6 +60,26 @@ class ExperiencesController extends Controller
         return redirect('/profile');
     }
     
+    public function update(Request $request, $id) {
+        $request->validate([
+            'title'       => 'required',
+            'description' => 'required',
+            'country'     => 'required',
+        ]);
+
+        $country = Country::find($request->country);
+        $experience = Experience::find($id);
+
+        if ($experience->user_id == Auth::user()->id) {
+            $experience->update([
+                'title'       => $request->title, 
+                'description' => $request->description,
+                'country'     => $country->name,
+            ]);
+        }
+
+        return redirect('/profile');
+    }
     
     
 }
