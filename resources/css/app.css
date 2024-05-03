@@ -23,6 +23,7 @@ footer {
     left: 0;
     width: 100%;
 }
+
 .image-input {
     display: inline-block;
     position: relative;
@@ -47,11 +48,24 @@ footer {
     height: 100%;
     object-fit: cover;
 }
+
 .tittleContainer{
     display: flex;
     flex-direction: row;
 }
+
 .tittleImage{
     margin-left: 150px;
     height: 200px;
 }
+
+.loginContainer {
+    margin-top: 170px;
+    height: 80%;
+}
+.signupContainer {
+    margin-top: 90px;
+    margin-bottom: 50px;
+    height: 80%;
+}
+
