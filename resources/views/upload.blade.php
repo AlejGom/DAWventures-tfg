@@ -7,18 +7,18 @@
     @csrf
     <div class="space-y-6">
       <div>
-        <h2 class="text-xl font-semibold text-gray-900">Where did you go?</h2>
-        <p class="mt-2 text-sm text-gray-600">This information will be displayed publicly, so be careful what you share.</p>
+        <h2 class="text-xl font-semibold text-gray-900">¿Has cambiado de idea?</h2>
+        <p class="mt-2 text-sm text-gray-600">Esta información se mostrará públicamente, así que tenga cuidado con lo que comparte.</p>
       </div>
 
       <div>
-        <input placeholder="Title" type="text" name="title" id="title" autocomplete="title" class="mt-1 block w-full border border-gray-300 @error('title') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ old('title') }}">
+        <input placeholder="Título" type="text" name="title" id="title" autocomplete="title" class="mt-1 block w-full border border-gray-300 @error('title') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ old('title') }}">
         @error('title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
       </div>
 
       <div class="relative">
         <select name="country" class="block appearance-none w-full bg-white border border-gray-300 @error('country') border-red-500 @enderror hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-          <option value="" disabled {{ old('country') === null ? 'selected' : '' }}>Country</option>
+          <option value="" disabled {{ old('country') === null ? 'selected' : '' }}>País</option>
             @foreach ($countries as $country)
               <option value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
             @endforeach
@@ -33,7 +33,7 @@
 
 
       <div>
-        <label for="description" class="block text-sm font-medium text-gray-900">Description</label>
+        <label for="description" class="block text-sm font-medium text-gray-900">Descripcion</label>
         <textarea id="description" name="description" rows="15" class="mt-1 block w-full h-500 border border-gray-300 @error('description') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">{{ old('description') }}</textarea>
         @error('description') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
       </div>
@@ -44,10 +44,10 @@
         <input type="file" name="images[]" id="images" accept="image/*" multiple>
     </div>
     <div id="imageNames"></div>
-    @error('images') <p class="text-red-500 text-xs mt-1">The maximum number of images is 4'</p> @enderror
+    @error('images') <p class="text-red-500 text-xs mt-1">El número máximo de imágenes es 4'</p> @enderror
 
     <div class="mt-6 flex justify-end space-x-4 mb-8">
-      <button type="submit" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Upload</button>
+      <button type="submit" class="inline-block px-4 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Crear experiencia</button>
     </div>
   </form>
 </div>

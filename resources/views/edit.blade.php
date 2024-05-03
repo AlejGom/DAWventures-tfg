@@ -7,12 +7,12 @@
     @csrf
     <div class="space-y-6">
       <div>
-        <h2 class="text-xl font-semibold text-gray-900">Where did you go?</h2>
-        <p class="mt-2 text-sm text-gray-600">This information will be displayed publicly, so be careful what you share.</p>
+        <h2 class="text-xl font-semibold text-gray-900">¿Dónde has ido?</h2>
+        <p class="mt-2 text-sm text-gray-600">Esta información se mostrará públicamente, así que tenga cuidado con lo que comparte.</p>
       </div>
 
       <div>
-        <input value="{{ $experience->title }}" placeholder="Title" type="text" name="title" id="title" autocomplete="title" class="mt-1 block w-full border border-gray-300 @error('title') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ old('title') }}">
+        <input value="{{ $experience->title }}" placeholder="Título" type="text" name="title" id="title" autocomplete="title" class="mt-1 block w-full border border-gray-300 @error('title') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ old('title') }}">
         @error('title') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
       </div>
 
@@ -33,7 +33,7 @@
 
 
       <div>
-        <label for="description" class="block text-sm font-medium text-gray-900">Description</label>
+        <label for="description" class="block text-sm font-medium text-gray-900">Descripcion</label>
         <textarea id="description" name="description" rows="15" class="mt-1 block w-full h-500 border border-gray-300 @error('description') border-red-500 @enderror rounded-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">{{ $experience->description }}{{ old('description') }}</textarea>
         @error('description') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
       </div>

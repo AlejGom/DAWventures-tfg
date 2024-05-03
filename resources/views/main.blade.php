@@ -7,7 +7,7 @@
     <div class="tittleContainer">
       <div class="mx-auto max-w-2xl lg:mx-0">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">DAWventures</h2>
-        <h6 class="mt-2 text-lg leading-8 text-gray-600">Where every page is a new adventure in your journey around the world.</h6>
+        <h6 class="mt-2 text-lg leading-8 text-gray-600">Donde cada página es una nueva aventura en tu viaje alrededor del mundo.</h6>
       </div>
       <img class="tittleImage" src="{{ asset('../storage/images/kyoto.jpg') }}">
     </div>

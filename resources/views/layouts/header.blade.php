@@ -12,30 +12,30 @@
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
     <div class="flex lg:flex-1">
       <a href="#" class="-m-1.5 p-1.5">
-        <span class="sr-only">Your Company</span>
+        <span class="sr-only">Tu logo</span>
         <img class="h-12 w-auto" src="{{ asset('../storage/images/montana.png') }}" alt="">
       </a>
     </div>
     <div class="flex lg:hidden">
       <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-300"> <!-- Texto gris claro para icono del menú -->
-        <span class="sr-only">Open main menu</span>
+        <span class="sr-only">Abrir menu principal</span>
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </button>
     </div>
     <div class="hidden lg:flex lg:gap-x-12">
-      <a href="{{ route('main') }}" class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Main page</a> <!-- Texto gris claro para los enlaces -->
-      <a @if (!Auth::check()) href="{{ route('showLogin') }}" @else href="{{ route('showUpload') }}" @endif class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Upload experience</a>
-      <a @if (!Auth::check()) href="{{ route('showLogin') }}" @else href="{{ route('showProfile') }}" @endif class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Profile</a>
+      <a href="{{ route('main') }}" class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Principal</a> <!-- Texto gris claro para los enlaces -->
+      <a @if (!Auth::check()) href="{{ route('showLogin') }}" @else href="{{ route('showUpload') }}" @endif class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Crear experiencia</a>
+      <a @if (!Auth::check()) href="{{ route('showLogin') }}" @else href="{{ route('showProfile') }}" @endif class="text-sm font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">Perfil</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
       @if (!Auth::check())
-        <a href="{{ route('showLogin') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log in</button></a>
-        <a href="{{ route('showSignup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button></a>
+        <a href="{{ route('showLogin') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Iniciar sesión</button></a>
+        <a href="{{ route('showSignup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Registrarse</button></a>
       @else
         <a href="{{ route('showProfile') }}" class="text-3xl font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">{{ Auth::user()->name }}</a>
-        <a href="{{ route('logout') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log out</button></a>
+        <a href="{{ route('logout') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Cerrar sesión</button></a>
       @endif
     </div>
   </nav>
@@ -46,11 +46,11 @@
     <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-gray-800 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
       <div class="flex items-center justify-between">
         <a href="#" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
+          <span class="sr-only">Tu logo</span>
           <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
         </a>
         <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-300"> <!-- Texto gris claro para icono de cierre -->
-          <span class="sr-only">Close menu</span>
+          <span class="sr-only">Cerrar menu</span>
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -59,17 +59,17 @@
       <div class="mt-6 flow-root">
         <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
-            <a href="{{ route('main') }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Main page</a> <!-- Texto gris claro para enlaces -->
-            <a @if (!Auth::check()) href="{{ route('showLogin') }}" @endif class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Upload experience</a>
-            <a @if (!Auth::check()) href="{{ route('showLogin') }}" @endif class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Profile</a>
+            <a href="{{ route('main') }}" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Principal</a> <!-- Texto gris claro para enlaces -->
+            <a @if (!Auth::check()) href="{{ route('showLogin') }}" @endif class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Crear experiencia</a>
+            <a @if (!Auth::check()) href="{{ route('showLogin') }}" @endif class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-300 hover:bg-gray-700">Perfil</a>
           </div>
           <div class="hidden lg:flex lg:flex-1 lg:justify-end">
             @if (!Auth::check())
-              <a href="{{ route('showLogin') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log in</button></a>
-              <a href="{{ route('showSignup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Register</button></a>
+              <a href="{{ route('showLogin') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Iniciar sesión</button></a>
+              <a href="{{ route('showSignup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Registrarse</button></a>
             @else
               <a href="{{ route('showProfile') }}" class="text-3xl font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">{{ Auth::user()->name }}</a>
-              <a href="{{ route('logout') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Log out</button></a>
+              <a href="{{ route('logout') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Cerrar sesión</button></a>
             @endif
           </div>
         </div>
