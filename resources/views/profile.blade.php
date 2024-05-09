@@ -90,7 +90,7 @@
         var deleteButtons = document.querySelectorAll('.deleteLink');
         deleteButtons.forEach(function(button) {
             button.addEventListener('click', function(event) {
-                var confirmDelete = confirm('You are just about to delete this file, ¿are you sure?');
+                var confirmDelete = confirm('¿Estas seguro que quieres borrar esta experiencia?');
                 if (!confirmDelete) {
                     event.preventDefault();
                 }
