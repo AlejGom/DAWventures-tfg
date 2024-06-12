@@ -30,6 +30,15 @@ class RoutesController extends Controller
             'countries' => $countries
         ]);
     }
+    public function showOtherUser($id) {
+        $experience = Experience::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        $user       = User::find($id);
+
+        return view('pageUser', [
+            'experiences' => $experience,
+            'user'        => $user
+        ]);
+    }
     public function showProfile() {
         $experiences = $this->loadExperiences(2);
         /* dd($experiences); */
