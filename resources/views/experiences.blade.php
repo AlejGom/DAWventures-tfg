@@ -2,6 +2,10 @@
 
 @section('content')
 
+<div class="absolute top-[140px] left-[50px]">
+  <a href="{{ route('main') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Volver al menú</button></a>
+</div>
+
 <div class="bg-white">
   <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:grid-cols-2 lg:px-8">
     <div>
