@@ -14,7 +14,7 @@ class AddImageToUser extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_image')->default('../storage/profile_images/app/public/profile_images/default.png')->after('password');
+            $table->string('profile_image')->default('../storage/images/default.png')->after('password');
         });
     }
 
