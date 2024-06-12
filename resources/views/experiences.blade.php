@@ -14,7 +14,7 @@
       <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
         <div class="border-t border-gray-200 pt-4">
           <dt class="font-medium text-gray-900">País</dt>
-          <dd class="mt-2 text-sm text-gray-500">{{ $experience->country }}</dd>
+          <dd class="mt-2 text-sm text-blue-500 underline"><a href="https://www.google.com/maps/search/{{ $experience->country }}" target="_blank">{{ $experience->country }}</a></dd>
         </div>
         <div class="border-t border-gray-200 pt-4">
           <dt class="font-medium text-gray-900">Creación</dt>
