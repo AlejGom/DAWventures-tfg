@@ -7,7 +7,7 @@
     @csrf
     <div class="space-y-6">
       <div>
-        <h2 class="text-xl font-semibold text-gray-900">¿Dónde has ido?</h2>
+        <h2 class="text-xl font-semibold text-gray-900">¿Has cambiado de idea?</h2>
         <p class="mt-2 text-sm text-gray-600">Esta información se mostrará públicamente, así que tenga cuidado con lo que comparte.</p>
       </div>
 
