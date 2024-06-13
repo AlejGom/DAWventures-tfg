@@ -55,12 +55,12 @@ class RoutesController extends Controller
     public function loadExperiences($number) {
         // 1 = main and admin, 2 = profile
         if ($number == 1) {
-            $experiences = Experience::orderBy('created_at', 'desc')->get();
+            $experiences = Experience::withCount('comments')->orderBy('created_at', 'desc')->get();
         }
         if ($number == 2) {
-            $experiences = Experience::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+            $experiences = Experience::withCount('comments')->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         }
-
+    
         return $experiences;
     }
 

@@ -11,13 +11,15 @@ class Experience extends Model
 
     protected $fillable = ['id', 'country', 'title', 'description', 'likes', 'user_id'];
 
-    public function images()
-    {
+    public function images() {
         return $this->hasMany(ExperienceImage::class);
     }
 
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
 }
