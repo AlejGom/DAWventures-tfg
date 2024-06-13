@@ -22,7 +22,7 @@
       <article class="flex max-w-xl flex-col items-start justify-between">
         <div class="flex items-center gap-x-4 text-xs">
           @if (Auth::user())
-            @if (Auth::user()->id == $experience->user_id || Auth::user()->name == 'admin')
+            @if (Auth::user()->id == $experience->user_id || Auth::user()->rol == 'admin')
               <a class="deleteLink" href="{{ route('deleteExperience', $experience->id) }}"><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/borrar.png') }}"></a>
               <a href="{{ route('showEditForm', $experience->id) }}"><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/boligrafo.png') }}"></a>
             @endif

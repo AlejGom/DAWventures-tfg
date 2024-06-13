@@ -40,7 +40,7 @@ class RoutesController extends Controller
         ]);
     }
     public function showProfile() {
-        if (Auth::user()->name == 'admin') {
+        if (Auth::user()->rol == 'admin') {
             $experiences = $this->loadExperiences(1);
         } else {
             $experiences = $this->loadExperiences(2);
@@ -75,12 +75,11 @@ class RoutesController extends Controller
     }
 
     public function showEditForm($id) {
-        /* dd(Auth::user()->name); */
 
         $experience = Experience::find($id);
 
         if ($experience->user_id != Auth::user()->id) {
-            if (Auth::user()->name != 'admin') {
+            if (Auth::user()->rol != 'admin') {
                 return redirect()->back();
             }
         }
