@@ -93,9 +93,9 @@
 
 <script>
   function openModal(imageSrc) {
-    const modal = document.getElementById('imageModal');
+    const modal      = document.getElementById('imageModal');
     const modalImage = document.getElementById('modalImage');
-    modalImage.src = imageSrc;
+    modalImage.src   = imageSrc;
     modal.classList.remove('hidden');
   }
 

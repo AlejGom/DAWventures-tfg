@@ -68,7 +68,7 @@ class RoutesController extends Controller
 
         $experience = Experience::find($id);
         $images     = ExperienceImage::where('experience_id', $experience->id)->get();
-        $comments = Comment::where('experience_id', $experience->id)->with('user')->get()->reverse();
+        $comments   = Comment::where('experience_id', $experience->id)->with('user')->get()->reverse();
         
         /* dd($comments); */
         return view('experiences', [

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ExperiencesController extends Controller
 {
+    // Function to upload an experience
     public function upload(Request $request) {
         $request->validate([
             'title'       => 'required',
@@ -54,6 +55,7 @@ class ExperiencesController extends Controller
         return redirect('/main');
     }
 
+    // Function to delete an experience
     public function deleteExperience($id) {
         $experience = Experience::find($id);
 
@@ -64,6 +66,7 @@ class ExperiencesController extends Controller
         return redirect('/profile');
     }
     
+    // Function to update an experience
     public function update(Request $request, $id) {
         $request->validate([
             'title'       => 'required',
@@ -85,6 +88,7 @@ class ExperiencesController extends Controller
         return redirect('/profile');
     }
     
+    // Function to create a commentary on an experience
     public function comment(Request $request) {
         $request->validate([
             'comment' => 'required|max:255',

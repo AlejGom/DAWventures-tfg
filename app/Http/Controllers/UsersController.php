@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
+    // Function to signup
     public function signup(Request $request) {
         $request->validate([
             'name'                  => 'required|min:4,max:20|unique:users',
             'email'                 => 'required|email|unique:users',
-            'password'              => 'required',
+            'password'              => 'required|min:4|max:20',
             'password_confirmation' => 'required|same:password',
         ]);
         
@@ -36,6 +37,7 @@ class UsersController extends Controller
         /* return redirect('/login'); */
     }
 
+    // Function to login
     public function login(Request $request) {
         $request->validate([
             'name'     => 'required',
@@ -61,11 +63,13 @@ class UsersController extends Controller
         }
     }
 
+    // Function to logout
     public function logout(Request $request) {
         Auth::logout();
         return redirect('/main');
     }
 
+    // Function to update user profile
     public function updateProfile(Request $request) {
         $user = User::find(Auth::user()->id);
     
