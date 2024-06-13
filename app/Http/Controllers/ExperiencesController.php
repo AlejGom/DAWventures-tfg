@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Experience;
 use App\Models\Country;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 class ExperiencesController extends Controller
@@ -84,5 +85,20 @@ class ExperiencesController extends Controller
         return redirect('/profile');
     }
     
-    
+    public function comment(Request $request) {
+        $request->validate([
+            'comment' => 'required|max:255',
+        ]);
+
+        $user = Auth::user();
+        $experience = Experience::find($request->experience_id);
+
+        $comment = Comment::create([
+            'experience_id' => $experience->id,
+            'user_id'       => $user->id,
+            'comment'       => $request->comment
+        ]);
+
+        return redirect('/experience/' . $experience->id);
+    }
 }

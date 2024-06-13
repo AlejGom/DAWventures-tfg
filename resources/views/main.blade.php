@@ -15,7 +15,7 @@
       @foreach ($experiences as $experience)
       <article class="flex max-w-xl flex-col items-start justify-between">
         <div class="flex items-center gap-x-4 text-xs">
-          <time datetime="{{ $experience->created_at }}" class="text-gray-500">{{ $experience->created_at }}</time>
+          <time datetime="{{ $experience->created_at }}" class="text-gray-500">{{ $experience->created_at->diffForHumans() }}</time>
           <a href="https://www.google.com/maps/search/{{ $experience->country }}" target="_blank" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{ $experience->country }}</a>
         </div>
         <div class="group relative">

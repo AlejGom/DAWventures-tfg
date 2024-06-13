@@ -6,6 +6,7 @@ use App\Models\Experience;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ExperienceImage;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ExperiencesController;
 
@@ -67,10 +68,13 @@ class RoutesController extends Controller
 
         $experience = Experience::find($id);
         $images     = ExperienceImage::where('experience_id', $experience->id)->get();
-
+        $comments = Comment::where('experience_id', $experience->id)->with('user')->get()->reverse();
+        
+        /* dd($comments); */
         return view('experiences', [
             'experience' => $experience,
             'images'     => $images,
+            'comments'   => $comments
         ]);
     }
 
