@@ -21,7 +21,7 @@ class ExperiencesController extends Controller
         if ($request->hasFile('images') && count($request->file('images')) > 4) {
             return redirect()->back()->withErrors(['images' => 'The maximum number of images is 4.'])->withInput();
         }
-
+        
         $country = Country::find($request->country);
     
         $experience = Experience::create([
