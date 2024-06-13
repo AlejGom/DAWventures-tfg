@@ -36,7 +36,25 @@
       <img src="" class="rounded-lg bg-gray-100">
       <img src="" class="rounded-lg bg-gray-100"> -->
     </div>
+    <div class="mt-10 border-t border-gray-200 pt-10">
+      <p class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Comentarios</p>
+        <div>
+          <form action="">
+            @csrf
+            <div class="mb-4">
+              <label class="block mb-2 text-sm font-bold text-gray-700" for="comment">Commenta tu experiencia</label>
+              @if (!Auth::check())
+                <p class="text-red-500">Debes iniciar sesión para comentar</p>
+              @endif
+              <textarea class="w-full h-40 px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" id="comment" name="comment"></textarea>
+            </div>
+            <div class="mb-6 text-right">
+              <button class="w-250 px-4 py-2 font-bold text-white @if (Auth::check()) bg-blue-500 hover:bg-blue-700 @else bg-blue-300 @endif rounded-lg focus:outline-none focus:shadow-outline" @if (!Auth::check()) disabled @endif type="submit">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
 @endsection
