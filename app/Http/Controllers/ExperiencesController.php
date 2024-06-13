@@ -12,7 +12,7 @@ class ExperiencesController extends Controller
     public function upload(Request $request) {
         $request->validate([
             'title'       => 'required',
-            'description' => 'required',
+            'description' => 'required|max:2000',
             'country'     => 'required',
             'images.*'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'images'      => 'max:4',
@@ -66,7 +66,7 @@ class ExperiencesController extends Controller
     public function update(Request $request, $id) {
         $request->validate([
             'title'       => 'required',
-            'description' => 'required',
+            'description' => 'required|max:2000',
             'country'     => 'required',
         ]);
 
