@@ -40,14 +40,19 @@ class RoutesController extends Controller
         ]);
     }
     public function showProfile() {
-        $experiences = $this->loadExperiences(2);
-        /* dd($experiences); */
+        if (Auth::user()->name == 'admin') {
+            $experiences = $this->loadExperiences(1);
+        } else {
+            $experiences = $this->loadExperiences(2);
+        }
+        
         return view('profile', [
             'experiences' => $experiences
         ]);
     }
 
     public function loadExperiences($number) {
+        // 1 = main and admin, 2 = profile
         if ($number == 1) {
             $experiences = Experience::orderBy('created_at', 'desc')->get();
         }
@@ -70,8 +75,16 @@ class RoutesController extends Controller
     }
 
     public function showEditForm($id) {
+        /* dd(Auth::user()->name); */
 
         $experience = Experience::find($id);
+
+        if ($experience->user_id != Auth::user()->id) {
+            if (Auth::user()->name != 'admin') {
+                return redirect()->back();
+            }
+        }
+
         $countries  = Country::all();
         $countryId  = Country::where('name', $experience->country)->first()->id;
 
