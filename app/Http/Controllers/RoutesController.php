@@ -32,7 +32,7 @@ class RoutesController extends Controller
         ]);
     }
     public function showOtherUser($id) {
-        $experience = Experience::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        $experience = Experience::withCount('comments')->where('user_id', $id)->orderBy('created_at', 'desc')->get();
         $user       = User::find($id);
 
         return view('pageUser', [
