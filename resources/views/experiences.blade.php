@@ -86,7 +86,7 @@
             </p>
             <p class="text-gray-500">{{ $comment->created_at->diffForHumans() }}</p>
           </div>
-          @if ($comment->user->id == Auth::user()->id)
+          @if (Auth::check() && $comment->user->id == Auth::user()->id)
             <a class="deleteLink" href="{{ route('deleteComment', $comment->id) }}"><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/borrar.png') }}"></a>
             <a href=""><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/boligrafo.png') }}"></a>
           @endif
