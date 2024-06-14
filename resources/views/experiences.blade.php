@@ -27,6 +27,18 @@
       </dl>
 
       <div class="mt-10 border-t border-gray-200 pt-10">
+        <div class="mb-8 relative flex items-center gap-x-4">
+          <img src="../{{ $experience->user->profile_image }}" alt="" class="h-10 w-10 rounded-full bg-gray-50">
+          <div class="text-sm leading-6">
+            <p class="font-semibold text-gray-900">
+              <a href="{{ route('showOtherUser', $experience->user->id) }}">
+                <span class="absolute inset-0"></span>
+                {{ $experience->user->name }}
+              </a>
+            </p>
+          </div>
+        </div>
+      
         <p class="mt-4 text-gray-500">{!! nl2br(e($experience->description)) !!}</p>
       </div>
     </div>

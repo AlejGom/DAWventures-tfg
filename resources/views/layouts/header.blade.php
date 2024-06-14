@@ -34,7 +34,6 @@
         <a href="{{ route('showLogin') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Iniciar sesión</button></a>
         <a href="{{ route('showSignup') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Registrarse</button></a>
       @else
-        <img class="h-10 w-10 rounded-full bg-gray-50 mr-3" src="../{{ Auth::user()->profile_image }}" alt="">
         <a href="{{ route('showProfile') }}" class="text-3xl mt-2 font-semibold leading-6 text-gray-300 hover:text-gray-300 hover:underline">{{ Auth::user()->name }}</a>
         <a href="{{ route('logout') }}"><button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Cerrar sesión</button></a>
       @endif
