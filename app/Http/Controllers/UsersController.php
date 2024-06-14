@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CorreoPrueba;
 
 class UsersController extends Controller
 {
@@ -106,6 +108,15 @@ class UsersController extends Controller
         return redirect('/profile');
     }
     
+    public function enviarCorreo(Request $request)
+    {
+        $subject = 'Asunto de prueba';
+        $messageContent = 'Este es el contenido del correo de prueba.';
+
+        Mail::to('alejgom02@gmail.com')->send(new CorreoPrueba($subject, $messageContent));
+
+        return view ('main');
+    }
     
     
 }

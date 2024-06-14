@@ -45,3 +45,5 @@ Route::post('/comment', [ExperiencesController::class, 'comment'])->name('commen
 Route::get('/deleteComment/{id}', [ExperiencesController::class, 'deleteComment'])->name('deleteComment')->middleware('auth');
 
 Route::post('/filterMain', [ExperiencesController::class, 'filterMain'])->name('filterMain');
+
+Route::get('/enviarCorreo', [UsersController::class, 'enviarCorreo'])->name('enviarCorreo');
