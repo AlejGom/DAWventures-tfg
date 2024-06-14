@@ -67,26 +67,49 @@ class ExperiencesController extends Controller
     }
     
     // Function to update an experience
-    public function update(Request $request, $id) {
-        $request->validate([
-            'title'       => 'required',
-            'description' => 'required|max:2000',
-            'country'     => 'required',
-        ]);
+// Function to update an experience
+public function update(Request $request, $id) {
+    $request->validate([
+        'title'       => 'required',
+        'description' => 'required|max:2000',
+        'country'     => 'required',
+        'images.*'    => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'images'      => 'max:4',
+    ]);
 
-        $country = Country::find($request->country);
-        $experience = Experience::find($id);
+    $country = Country::find($request->country);
+    $experience = Experience::find($id);
 
-        if ($experience->user_id == Auth::user()->id) {
-            $experience->update([
-                'title'       => $request->title, 
-                'description' => $request->description,
-                'country'     => $country->name,
+    // Eliminar las imágenes anteriores
+    $experience->images()->delete();
+
+    // Actualizar los datos de la experiencia
+    $experience->update([
+        'title'       => $request->title,
+        'description' => $request->description,
+        'country'     => $country->name,
+    ]);
+
+    // Subir las nuevas imágenes
+    if ($request->hasFile('images')) {
+        $images = $request->file('images');
+
+        foreach ($images as $image) {
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('public/experience_images', $imageName);
+
+            $experience->images()->create([
+                'experience_id' => $experience->id,
+                'user_id'       => Auth::user()->id,
+                'name'          => $imageName,
+                'route'         => '../../storage/app/public/experience_images/' . $imageName,
             ]);
         }
-
-        return redirect('/profile');
     }
+
+    return redirect('/profile')->with('success', 'Experiencia actualizada correctamente.');
+}
+
     
     // Function to create a commentary on an experience
     public function comment(Request $request) {
