@@ -44,6 +44,10 @@ class RoutesController extends Controller
             'user'        => $user
         ]);
     }
+
+    public function showRecoverPassword() {
+        return view('recoverPassword');
+    }
     public function showProfile() {
         if (Auth::user()->rol == 'admin') {
             $experiences = $this->loadExperiences(1);

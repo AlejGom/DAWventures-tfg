@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\CorreoPrueba;
+use App\Mail\RecoverMail;
 
 class UsersController extends Controller
 {
@@ -108,14 +108,53 @@ class UsersController extends Controller
         return redirect('/profile');
     }
     
-    public function enviarCorreo(Request $request)
+    public function sendMail(Request $request)
     {
-        $subject = 'Asunto de prueba';
-        $messageContent = 'Este es el contenido del correo de prueba.';
 
-        Mail::to('alejgom02@gmail.com')->send(new CorreoPrueba($subject, $messageContent));
+        $request->validate([
+            'name' => 'required'
+        ]);
 
-        return view ('main');
+        $subject = 'Recupera tu contraseña';
+        $messageContent1 = 'Hola, ¿estás intentando recuperar tu contraseña?';
+        $messageContent2 = 'Por favor, introduce el siguiente código en la página de recuperación.';
+        $code            = random_int(100000, 999999);
+        $messageContent3 = 'Gracias por usar nuestra aplicación';
+
+        $userEmail = User::where('name', $request->name)->first();
+
+        Mail::to($userEmail->email)->send(new RecoverMail($subject, $messageContent1, $messageContent2, $messageContent3, $code));
+
+        return view ('introduceCode', [
+            'code' => $code,
+            'user' => $userEmail
+        ]);
+    }
+
+    public function changePassword(Request $request) {
+
+        $request->validate([
+            'hiddenCode'            => 'required',
+            'hiddenUser'          => 'required',
+            'code'                  => 'required',
+            'password'              => 'required|min:4|max:20',
+            'password_confirmation' => 'required|same:password'
+        ]);
+
+        if ($request->hiddenCode == $request->code) {
+
+            $user = User::find($request->hiddenUser);
+
+            $user->password = Hash::make($request->password);
+
+            $user->save();
+
+            return redirect('/login');
+        } else {
+            return back()->withErrors([
+                'codigoError' => 'Código incorrecto',
+            ]);
+        }
     }
     
     

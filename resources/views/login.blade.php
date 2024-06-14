@@ -24,7 +24,7 @@
         <div class="flex items-center justify-between">
           <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
           <div class="text-sm">
-            <a href="{{ route('enviarCorreo') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste la contraseña?</a>
+            <a href="{{ route('showRecoverPassword') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste la contraseña?</a>
           </div>
         </div>
         <div class="mt-2">

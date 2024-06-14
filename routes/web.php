@@ -46,4 +46,8 @@ Route::get('/deleteComment/{id}', [ExperiencesController::class, 'deleteComment'
 
 Route::post('/filterMain', [ExperiencesController::class, 'filterMain'])->name('filterMain');
 
-Route::get('/enviarCorreo', [UsersController::class, 'enviarCorreo'])->name('enviarCorreo');
+Route::get('/showRecoverPassword', [RoutesController::class, 'showRecoverPassword'])->name('showRecoverPassword');
+
+Route::post('/sendMail', [UsersController::class, 'sendMail'])->name('sendMail');
+
+Route::post('/changePassword', [UsersController::class, 'changePassword'])->name('changePassword');
