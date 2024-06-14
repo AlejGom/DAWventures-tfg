@@ -143,23 +143,35 @@ public function update(Request $request, $id) {
     //Filter experiences
 
     public function filterMain(Request $request) {
-        
         $request->validate([
             'country' => 'required',
         ]);
-        
-        $experiences     = Experience::where('country', $request->country)->get()->reverse();
+    
+        $experiencesQuery = Experience::where('country', $request->country);
+    
+        if ($request->has('orderByComments')) {
+            $orderBy = $request->orderByComments;
+    
+            if ($orderBy == 'most_comments') {
+                $experiencesQuery->withCount('comments')->orderByDesc('comments_count');
+            } elseif ($orderBy == 'least_comments') {
+                $experiencesQuery->withCount('comments')->orderBy('comments_count');
+            }
+        } else {
+            $experiencesQuery->withCount('comments')->orderByDesc('created_at');
+        }
+    
+        $experiences     = $experiencesQuery->get();
         $countries       = Country::all();
         $filtered        = true;
         $selectedCountry = $request->country;
-
+    
         return view('main', [
-            'experiences' => $experiences,
-            'countries'   => $countries,
-            'filtered'    => $filtered,
+            'experiences'     => $experiences,
+            'countries'       => $countries,
+            'filtered'        => $filtered,
             'selectedCountry' => $selectedCountry
         ]);
-
-
     }
+    
 }
