@@ -105,4 +105,15 @@ class ExperiencesController extends Controller
 
         return redirect('/experience/' . $experience->id);
     }
+
+    // Function to delete a commentary on an experience
+    public function deleteComment($id) {
+        $comment = Comment::find($id);
+
+        if ($comment->user_id == Auth::user()->id) {
+            $comment->delete();
+        }
+
+        return redirect('/experience/' . $comment->experience_id);
+    }
 }

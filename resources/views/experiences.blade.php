@@ -71,6 +71,10 @@
             </p>
             <p class="text-gray-500">{{ $comment->created_at->diffForHumans() }}</p>
           </div>
+          @if ($comment->user->id == Auth::user()->id)
+            <a class="deleteLink" href="{{ route('deleteComment', $comment->id) }}"><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/borrar.png') }}"></a>
+            <a href=""><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/boligrafo.png') }}"></a>
+          @endif
         </div>
         <div class="mt-4">
           <p class="text-gray-700">{{ $comment->comment }}</p>
@@ -103,6 +107,19 @@
     const modal = document.getElementById('imageModal');
     modal.classList.add('hidden');
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+        var deleteButtons = document.querySelectorAll('.deleteLink');
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                var confirmDelete = confirm('¿Estas seguro que quieres borrar este comentario?');
+                if (!confirmDelete) {
+                    event.preventDefault();
+                }
+            });
+        });
+    });
+
 </script>
 
 @endsection

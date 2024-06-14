@@ -41,3 +41,5 @@ Route::post('/editExperience/{id}', [ExperiencesController::class, 'update'])->n
 Route::get('/showOtherUser/{id}', [RoutesController::class, 'showOtherUser'])->name('showOtherUser');
 
 Route::post('/comment', [ExperiencesController::class, 'comment'])->name('comment');
+
+Route::get('/deleteComment/{id}', [ExperiencesController::class, 'deleteComment'])->name('deleteComment')->middleware('auth');
