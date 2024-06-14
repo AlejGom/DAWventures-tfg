@@ -20,7 +20,7 @@
             <a href="{{ route('showEditForm', $experience->id) }}"><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/boligrafo.png') }}"></a>
           @endif
           <time datetime="{{ $experience->created_at }}" class="text-gray-500">{{ $experience->created_at->diffForHumans() }}</time>
-          <a href="https://www.google.com/maps/search/{{ $experience->country }}" target="_blank" class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">{{ $experience->country }}</a>
+          <a href="https://www.google.com/maps/search/{{ $experience->country }}" target="_blank" class="relative z-10 rounded-full bg-gray-200 px-3 py-1.5 font-medium text-gray-800 hover:bg-gray-300">{{ $experience->country }}</a>
           <img class="messageImage" src="../storage\images\comentarios.png" alt="">
           <span>{{ $experience->comments_count }}</span>
         </div>
