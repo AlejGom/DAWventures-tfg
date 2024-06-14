@@ -6,12 +6,14 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ExperiencesController;
 use App\Models\Experience;
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     $experiences = Experience::orderBy('created_at', 'desc')->get();
     return view('main', [
         'experiences' => $experiences
     ]);
-});
+}); */
+
+Route::get('/', [RoutesController::class, 'showMainForm'])->name('main');
 
 Route::get('/main', [RoutesController::class, 'showMainForm'])->name('main');
 
