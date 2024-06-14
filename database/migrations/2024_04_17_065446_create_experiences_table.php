@@ -18,7 +18,6 @@ class CreateExperiencesTable extends Migration
             $table->string('country');
             $table->string('title');
             $table->string('description', 2000);
-            $table->integer('likes')->default(0);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
