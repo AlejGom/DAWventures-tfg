@@ -41,12 +41,15 @@
         <form action="{{ route('comment') }}" method="POST">
           @csrf
           <input type="hidden" name="experience_id" value="{{ $experience->id }}">
-          <div class="mb-4">
+          <div class="mb-2">
             <label class="block mb-2 text-sm font-bold text-gray-700" for="comment">Commenta tu experiencia</label>
             @if (!Auth::check())
               <p class="text-red-500">Debes iniciar sesión para comentar</p>
             @endif
             <textarea class="w-full h-40 px-3 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 border rounded-lg focus:outline-none" id="comment" name="comment"></textarea>
+            @error('comment')
+              <p class="text-red-500">{{ $message }}</p>
+            @enderror
           </div>
           <div class="mb-6 text-right">
             <button class="w-250 px-4 py-2 font-bold text-white @if (Auth::check()) bg-blue-500 hover:bg-blue-700 @else bg-blue-300 @endif rounded-lg focus:outline-none focus:shadow-outline" @if (!Auth::check()) disabled @endif type="submit">Enviar</button>
@@ -57,7 +60,7 @@
   </div>
 </div>
 
-<div class="mt-10 border-t border-gray-200 pt-10 bg-gray-100">
+<div class="w-[1280px] mx-auto border-t border-gray-200 pt-10 bg-gray-100">
   <p class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Comentarios</p>
 
   <div class="mt-8 space-y-8 m-10">
@@ -76,8 +79,8 @@
             <a href=""><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/boligrafo.png') }}"></a>
           @endif
         </div>
-        <div class="mt-4">
-          <p class="text-gray-700">{{ $comment->comment }}</p>
+        <div class="mt-4 text-left">
+          <p class="text-gray-700">{!! nl2br(e($comment->comment)) !!}</p>
         </div>
       </div>
     @endforeach
