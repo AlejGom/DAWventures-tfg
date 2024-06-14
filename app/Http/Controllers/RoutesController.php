@@ -14,9 +14,13 @@ class RoutesController extends Controller
 {
     public function showMainForm() {
         $experiences = $this->loadExperiences(1);
+        $countries   = Country::all();
+        $filtered    = false;
 
         return view('main', [
-            'experiences' => $experiences
+            'experiences' => $experiences,
+            'countries'    => $countries,
+            'filtered'     => $filtered
         ]);
     }
     public function showLoginForm() {

@@ -11,7 +11,33 @@
       </div>
       <img class="tittleImage" src="{{ asset('../storage/images/kyoto.jpg') }}">
     </div>
-    <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+
+    <!-- Filters -->
+    <div class="text-start mx-auto mt-10 grid max-w-2xl gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <form action="{{ route('filterMain') }}" method="POST">
+        @csrf
+        <h3 class="mt-3 mb-5 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">Filtrado de experiencias</h3>
+        
+        <div class="flex items-center">
+          <select name="country" class="block appearance-none w-full bg-white border border-gray-300 @error('country') border-red-500 @enderror hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+            <option value="" disabled {{ old('country') === null ? 'selected' : '' }}>Selecciona un país</option>
+            @if ($filtered == true)
+              <option value="{{ $selectedCountry }}" selected>{{ $selectedCountry }}</option>
+            @endif
+            @foreach ($countries as $country)
+              <option value="{{ $country->name }}" {{ old('country') == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>
+            @endforeach
+          </select>
+
+          <button type="submit" class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Filtrar</button>
+          @if ($filtered == true)
+            <a href="{{ route('main') }}" class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Limpiar</a>
+          @endif
+        </div>
+      </form>
+    </div>
+
+    <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
       @foreach ($experiences as $experience)
       <article class="flex max-w-xl flex-col items-start justify-between">
         <div class="flex items-center gap-x-4 text-xs">

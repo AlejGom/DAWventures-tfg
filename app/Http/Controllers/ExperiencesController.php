@@ -139,4 +139,27 @@ public function update(Request $request, $id) {
 
         return redirect('/experience/' . $comment->experience_id);
     }
+
+    //Filter experiences
+
+    public function filterMain(Request $request) {
+        
+        $request->validate([
+            'country' => 'required',
+        ]);
+        
+        $experiences     = Experience::where('country', $request->country)->get()->reverse();
+        $countries       = Country::all();
+        $filtered        = true;
+        $selectedCountry = $request->country;
+
+        return view('main', [
+            'experiences' => $experiences,
+            'countries'   => $countries,
+            'filtered'    => $filtered,
+            'selectedCountry' => $selectedCountry
+        ]);
+
+
+    }
 }
