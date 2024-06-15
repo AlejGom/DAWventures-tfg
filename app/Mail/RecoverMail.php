@@ -18,8 +18,8 @@ class RecoverMail extends Mailable
 
     public function __construct($subject, $messageContent1, $messageContent2, $messageContent3, $code)
     {
-        $this->subject        = $subject;
-        $this->messageContent = $messageContent1;
+        $this->subject         = $subject;
+        $this->messageContent  = $messageContent1;
         $this->messageContent2 = $messageContent2;
         $this->messageContent3 = $messageContent3;
         $this->code = $code;
