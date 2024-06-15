@@ -59,11 +59,12 @@ class ExperiencesController extends Controller
     public function deleteExperience($id) {
         $experience = Experience::find($id);
 
-        if ($experience->user_id == Auth::user()->id) {
+        if ($experience->user_id == Auth::user()->id || Auth::user()->role == 'admin') {
             $experience->delete();
         }
 
-        return redirect('/profile');
+        return back();
+        /* return redirect('/profile'); */
     }
     
     // Function to update an experience
