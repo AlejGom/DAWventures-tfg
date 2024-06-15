@@ -4,6 +4,12 @@
 
 <link rel="stylesheet" href="{{ asset('../resources/css/app.css') }}">
 
+<div class="absolute top-[140px] left-[50px]">
+  <a href="{{ route('main') }}">
+    <button class="ml-4 py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Volver al menú</button>
+  </a>
+</div>
+
 <div class="flex flex-row items-center justify-center px-6 py-12 lg:px-8">
   <img src="../{{ $user->profile_image }}" class="h-16 w-16 rounded-full mr-4">
   <h1 class="text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">{{ $user->name }}</h1>
