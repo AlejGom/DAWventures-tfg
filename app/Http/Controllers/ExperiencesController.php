@@ -59,7 +59,7 @@ class ExperiencesController extends Controller
     public function deleteExperience($id) {
         $experience = Experience::find($id);
 
-        if ($experience->user_id == Auth::user()->id || Auth::user()->role == 'admin') {
+        if ($experience->user_id == Auth::user()->id || Auth::user()->rol == 'admin') {
             $experience->delete();
         }
 
