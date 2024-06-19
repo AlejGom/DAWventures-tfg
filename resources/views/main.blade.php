@@ -30,7 +30,10 @@
             </select>
 
             <select name="orderByComments" class="ml-4 block appearance-none w-[250px] bg-white border border-gray-300 @error('orderByComments') border-red-500 @enderror hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                <option value="" disabled selected>Ordenar por comentarios</option>
+                <option value="" disabled {{ old('orderByComments') === null ? 'selected' : '' }}>Ordenar por comentarios</option>
+                @if ($filtered == true)
+                    <option value="{{ $selectedComments }}" selected>{{ $selectedComments }}</option>
+                @endif
                 <option value="most_comments" {{ old('orderByComments') == 'most_comments' ? 'selected' : '' }}>Más comentarios</option>
                 <option value="least_comments" {{ old('orderByComments') == 'least_comments' ? 'selected' : '' }}>Menos comentarios</option>
             </select>

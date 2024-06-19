@@ -54,7 +54,7 @@
           @csrf
           <input type="hidden" name="experience_id" value="{{ $experience->id }}">
           <div class="mb-2">
-            <label class="block mb-2 text-sm font-bold text-gray-700" for="comment">Commenta tu experiencia</label>
+            <label class="block mb-2 text-sm font-bold text-gray-700" for="comment">Comenta tu experiencia</label>
             @if (!Auth::check())
               <p class="text-red-500">Debes iniciar sesión para comentar</p>
             @endif
@@ -64,7 +64,7 @@
             @enderror
           </div>
           <div class="mb-6 text-right">
-            <button class="w-250 px-4 py-2 font-bold text-white @if (Auth::check()) bg-blue-500 hover:bg-blue-700 @else bg-blue-300 @endif rounded-lg focus:outline-none focus:shadow-outline" @if (!Auth::check()) disabled @endif type="submit">Enviar</button>
+            <button class="postComment w-250 px-4 py-2 font-bold text-white @if (Auth::check()) bg-blue-500 hover:bg-blue-700 @else bg-blue-300 @endif rounded-lg focus:outline-none focus:shadow-outline" @if (!Auth::check()) disabled @endif type="submit">Enviar</button>
           </div>
         </form>
       </div>
@@ -88,7 +88,7 @@
           </div>
           @if (Auth::check() && $comment->user->id == Auth::user()->id || Auth::check() && Auth::user()->rol == 'admin')
             <a class="deleteLink" href="{{ route('deleteComment', $comment->id) }}"><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/borrar.png') }}"></a>
-            <a href=""><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/boligrafo.png') }}"></a>
+            <!-- <a href=""><img class="w-6 h-6 mr-4" src="{{ asset('../storage/images/boligrafo.png') }}"></a> -->
           @endif
         </div>
         <div class="mt-4 text-left">
@@ -128,6 +128,18 @@
         deleteButtons.forEach(function(button) {
             button.addEventListener('click', function(event) {
                 var confirmDelete = confirm('¿Estas seguro que quieres borrar este comentario?');
+                if (!confirmDelete) {
+                    event.preventDefault();
+                }
+            });
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteButtons = document.querySelectorAll('.postComment');
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                var confirmDelete = confirm('Estás apunto de enviar este comentario. La edición de comentarios no está disponible por motivos de seguridad. ¿Estas seguro que quieres enviar este comentario?');
                 if (!confirmDelete) {
                     event.preventDefault();
                 }

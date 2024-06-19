@@ -108,7 +108,8 @@ public function update(Request $request, $id) {
         }
     }
 
-    return redirect('/profile')->with('success', 'Experiencia actualizada correctamente.');
+    /* return redirect('/profile')->with('success', 'Experiencia actualizada correctamente.'); */
+    return back();
 }
 
     
@@ -134,7 +135,7 @@ public function update(Request $request, $id) {
     public function deleteComment($id) {
         $comment = Comment::find($id);
 
-        if ($comment->user_id == Auth::user()->id) {
+        if ($comment->user_id == Auth::user()->id || Auth::user()->rol == 'admin') {
             $comment->delete();
         }
 
@@ -162,16 +163,23 @@ public function update(Request $request, $id) {
             $experiencesQuery->withCount('comments')->orderByDesc('created_at');
         }
     
-        $experiences     = $experiencesQuery->get();
-        $countries       = Country::all();
-        $filtered        = true;
-        $selectedCountry = $request->country;
+        $experiences      = $experiencesQuery->get();
+        $countries        = Country::all();
+        $filtered         = true;
+        $selectedCountry  = $request->country;
+
+        if ($request->orderByComments == 'most_comments') {
+            $selectedComments = 'Más comentarios';
+        } else {
+            $selectedComments = 'Menos comentarios';
+        }
     
         return view('main', [
-            'experiences'     => $experiences,
-            'countries'       => $countries,
-            'filtered'        => $filtered,
-            'selectedCountry' => $selectedCountry
+            'experiences'      => $experiences,
+            'countries'        => $countries,
+            'filtered'         => $filtered,
+            'selectedCountry'  => $selectedCountry,
+            'selectedComments' => $selectedComments
         ]);
     }
     
