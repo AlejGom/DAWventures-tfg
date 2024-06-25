@@ -109,7 +109,7 @@ public function update(Request $request, $id) {
     }
 
     /* return redirect('/profile')->with('success', 'Experiencia actualizada correctamente.'); */
-    return back();
+    return redirect('/experience/' . $experience->id);
 }
 
     
@@ -144,43 +144,43 @@ public function update(Request $request, $id) {
 
     //Filter experiences
 
-    public function filterMain(Request $request) {
-        $request->validate([
-            'country' => 'required',
-        ]);
-    
-        $experiencesQuery = Experience::where('country', $request->country);
-    
-        if ($request->has('orderByComments')) {
-            $orderBy = $request->orderByComments;
-    
-            if ($orderBy == 'most_comments') {
-                $experiencesQuery->withCount('comments')->orderByDesc('comments_count');
-            } elseif ($orderBy == 'least_comments') {
-                $experiencesQuery->withCount('comments')->orderBy('comments_count');
-            }
-        } else {
-            $experiencesQuery->withCount('comments')->orderByDesc('created_at');
-        }
-    
-        $experiences      = $experiencesQuery->get();
-        $countries        = Country::all();
-        $filtered         = true;
-        $selectedCountry  = $request->country;
+public function filterMain(Request $request)
+{
+    // Validación
+    $request->validate([
+        'country'         => 'nullable|string',
+        'orderByComments' => 'nullable',
+    ]);
 
-        if ($request->orderByComments == 'most_comments') {
-            $selectedComments = 'Más comentarios';
-        } else {
-            $selectedComments = 'Menos comentarios';
-        }
-    
-        return view('main', [
-            'experiences'      => $experiences,
-            'countries'        => $countries,
-            'filtered'         => $filtered,
-            'selectedCountry'  => $selectedCountry,
-            'selectedComments' => $selectedComments
-        ]);
+    $experiencesQuery = Experience::query();
+
+    if ($request->filled('country')) {
+        $experiencesQuery->where('country', $request->country);
     }
+
+    if ($request->filled('orderByComments')) {
+        if ($request->orderByComments == 'most_comments') {
+            $experiencesQuery->withCount('comments')->orderByDesc('comments_count');
+        } elseif ($request->orderByComments == 'least_comments') {
+            $experiencesQuery->withCount('comments')->orderBy('comments_count');
+        }
+    } else {
+        $experiencesQuery->withCount('comments')->orderByDesc('created_at');
+    }
+
+    $experiences      = $experiencesQuery->get();
+    $countries        = Country::all();
+    $filtered         = $request->filled('country') || $request->filled('orderByComments');
+    $selectedCountry  = $request->country ?? '';
+    $selectedComments = $request->orderByComments == 'most_comments' ? 'Más comentarios' : ($request->orderByComments == 'least_comments' ? 'Menos comentarios' : '');
+
+    return view('main', [
+        'experiences'      => $experiences,
+        'countries'        => $countries,
+        'filtered'         => $filtered,
+        'selectedCountry'  => $selectedCountry,
+        'selectedComments' => $selectedComments
+    ]);
+}
     
 }
